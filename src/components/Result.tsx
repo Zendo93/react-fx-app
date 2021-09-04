@@ -15,15 +15,13 @@ function Result() {
 
     return (
         <>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
-            <Item/>
+            <Item name="USD" currency={1.05}/>
+            <Item name="USD" currency={1.05}/>
+            <Item name="USD" currency={1.05}/>
+            <Item name="USD" currency={1.05}/>
+            <Item name="USD" currency={1.05}/>
+            <Item name="USD" currency={1.05}/>
+            <Item name="USD" currency={1.05}/>
         </>
     );
 }

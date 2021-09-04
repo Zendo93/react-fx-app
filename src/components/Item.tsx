@@ -20,7 +20,12 @@ const useStyles = makeStyles({
     },
 });
 
-function Item() {
+interface IProps{
+    name: string;
+    currency: number;
+}
+
+function Item(props: IProps) {
     const classes = useStyles();
 
    return (
@@ -30,10 +35,10 @@ function Item() {
                 <img src={flag} alt="Flag" />
             </Typography>
             <Typography className={classes.name} variant="h4" component="h2">
-                USD
+                {props.name}
             </Typography>
             <Typography className={classes.currency} variant="h4" component="h2">
-                1.05 EUR
+                {props.currency} EUR
             </Typography>
         </CardContent>
     </Card>
