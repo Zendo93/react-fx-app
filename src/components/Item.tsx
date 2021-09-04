@@ -1,6 +1,5 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import flag from "../data/flags/us.png";
 
 const useStyles = makeStyles({
     root: {
@@ -21,6 +20,7 @@ const useStyles = makeStyles({
 });
 
 interface IProps{
+    flag: string;
     name: string;
     currency: number;
 }
@@ -32,7 +32,7 @@ function Item(props: IProps) {
        <Card className={classes.root} variant="outlined">
         <CardContent>
             <Typography className={classes.flag} color="textSecondary" gutterBottom>
-                <img src={flag} alt="Flag" />
+                <img src={props.flag} alt="Flag" />
             </Typography>
             <Typography className={classes.name} variant="h4" component="h2">
                 {props.name}
