@@ -4,7 +4,6 @@ import {useAppDispatch, useAppSelector} from "../app/hooks";
 import {AppDispatch} from "../app/store";
 import {fetchResult, selectResult} from "../reducers/resultReducer";
 import {IFXResponse} from "../dto/FXResponse";
-import flag from "../data/flags/us.png";
 
 function Result() {
     const result: IFXResponse | {} = useAppSelector(selectResult);
@@ -19,7 +18,7 @@ function Result() {
 
         if (Object.keys(result).length){
           items = result.fx.filter(fx => fx.currency && fx.exchangeRate?.sell)
-              .map(fx => <Item key={fx.currency} flag={flag} name={fx.currency} currency={fx.exchangeRate.sell}/>);
+              .map(fx => <Item key={fx.currency} flag="/flags/us.png" name={fx.currency} currency={fx.exchangeRate.sell}/>);
         }
 
         return items;
