@@ -1,14 +1,17 @@
 import React, {useEffect} from "react";
 import Item from "./Item";
-import {useAppDispatch} from "../app/hooks";
+import {useAppDispatch, useAppSelector} from "../app/hooks";
 import {AppDispatch} from "../app/store";
-import {fetchResult} from "../reducers/resultReducer";
+import {fetchResult, selectResult} from "../reducers/resultReducer";
+import {IFXResponse} from "../dto/FXResponse";
 
 function Result() {
+    const result: IFXResponse | {} = useAppSelector(selectResult);
     const dispatch: AppDispatch = useAppDispatch();
+
     useEffect(() => {
         dispatch(fetchResult());
-    });
+    }, []);
 
     return (
         <>
