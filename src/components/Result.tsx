@@ -11,17 +11,22 @@ function Result() {
 
     useEffect(() => {
         dispatch(fetchResult());
-    }, []);
+    }, [dispatch]);
+
+    function displayResult(result: IFXResponse): JSX.Element[] {
+        let items: JSX.Element[] = [];
+
+        if (Object.keys(result).length){
+          items = result.fx.filter(fx => fx.currency && fx.exchangeRate?.sell)
+              .map(fx => <Item key={fx.currency} name={fx.currency} currency={fx.exchangeRate.sell}/>);
+        }
+
+        return items;
+    }
 
     return (
         <>
-            <Item name="USD" currency={1.05}/>
-            <Item name="USD" currency={1.05}/>
-            <Item name="USD" currency={1.05}/>
-            <Item name="USD" currency={1.05}/>
-            <Item name="USD" currency={1.05}/>
-            <Item name="USD" currency={1.05}/>
-            <Item name="USD" currency={1.05}/>
+            {Object.keys(result).length && displayResult(result as IFXResponse)}
         </>
     );
 }
