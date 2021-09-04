@@ -17,11 +17,15 @@ function Result() {
         let items: JSX.Element[] = [];
 
         if (Object.keys(result).length){
-          items = result.fx.filter(fx => fx.currency && fx.exchangeRate?.sell)
-              .map(fx => <Item key={fx.currency} flag="/flags/us.png" name={fx.currency} currency={fx.exchangeRate.sell}/>);
+          items = result.fx.filter(fx => fx.currency && fx.exchangeRate?.sell && fx.flags)
+              .map(fx => <Item key={fx.currency} flag={getFlag(fx.currency)} name={fx.currency} currency={fx.exchangeRate.sell}/>);
         }
 
         return items;
+    }
+
+    function getFlag(currency: string): string {
+        return `/flags/${currency.slice(0, currency.length - 1)}.png`
     }
 
     return (
