@@ -4,6 +4,8 @@ import React from "react";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         container: {
+            position: 'sticky',
+            top: 0,
             margin: 0,
             backgroundColor: 'black'
         },
