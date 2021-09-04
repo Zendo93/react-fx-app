@@ -1,5 +1,6 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import flag from "../data/flags/us.png";
 
 const useStyles = makeStyles({
     root: {
@@ -26,7 +27,7 @@ function Item() {
        <Card className={classes.root} variant="outlined">
         <CardContent>
             <Typography className={classes.flag} color="textSecondary" gutterBottom>
-                Flag
+                <img src={flag} alt="Flag" />
             </Typography>
             <Typography className={classes.name} variant="h4" component="h2">
                 USD
