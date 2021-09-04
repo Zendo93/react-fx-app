@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from '@reduxjs/toolkit';
 import resultReducer from "../reducers/resultReducer";
-import {combineEpics, createEpicMiddleware, Epic} from "redux-observable";
+import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {resultEpic} from "../middleware/resultEpic";
 
 const rootEpic = combineEpics(
