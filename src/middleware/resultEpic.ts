@@ -1,6 +1,6 @@
 import {from, Observable} from "rxjs";
 import {filter, map, mergeMap} from "rxjs/operators";
-import {getFXResponse} from "../api/ForeignExchangeAPI";
+import {getFXResponse} from "../api/foreignExchangeAPI";
 import {setResult} from "../reducers/resultReducer";
 import {Action} from "@reduxjs/toolkit";
 
