@@ -2,13 +2,15 @@ import {applyMiddleware, combineReducers, createStore} from '@reduxjs/toolkit';
 import resultReducer from "../reducers/resultReducer";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {resultEpic} from "../middleware/resultEpic";
+import searchReducer from "../reducers/searchReducer";
 
 const rootEpic = combineEpics(
     resultEpic
 );
 
 const rootReducer = combineReducers({
-    resultReducer
+    resultReducer,
+    searchReducer
 });
 
 const epicMiddleware = createEpicMiddleware();
