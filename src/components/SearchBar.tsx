@@ -1,5 +1,8 @@
 import {Container, createStyles, InputBase, makeStyles, Theme, Typography } from "@material-ui/core";
 import React from "react";
+import {useAppDispatch, useAppSelector} from "../app/hooks";
+import {AppDispatch} from "../app/store";
+import {selectSearchTerm, setSearchTerm} from "../reducers/searchReducer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,8 +33,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function SearchBar() {
-
     const classes = useStyles();
+    const searchTerm: string = useAppSelector(selectSearchTerm);
+    const dispatch: AppDispatch = useAppDispatch();
 
     return (
         <Container className={classes.container} disableGutters={true} maxWidth={false}>
@@ -39,7 +43,8 @@ function SearchBar() {
                 <Typography className={classes.typography} variant="h6">
                     Search
                 </Typography>
-                <InputBase id="search-input" className={classes.inputBase} />
+                <InputBase id="search-input" className={classes.inputBase} value={searchTerm}
+                           onChange={event => dispatch(setSearchTerm(event.target.value))} />
             </form>
         </Container>
     );
