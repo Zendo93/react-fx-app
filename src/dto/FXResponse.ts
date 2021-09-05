@@ -6,7 +6,7 @@ export interface IFXResponse {
     fx: Array<IForeignExchange>;
 }
 
-interface IForeignExchange {
+export interface IForeignExchange {
     currency: string;
     precision: number;
     nameI18N: string;
