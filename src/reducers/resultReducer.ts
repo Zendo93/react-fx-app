@@ -1,13 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../app/store";
-import {IFXResponse} from "../dto/FXResponse";
+import {IForeignExchange} from "../dto/FXResponse";
 
 interface IResultState {
-    result: IFXResponse | {};
+    result: IForeignExchange[];
 }
 
 const initialState: IResultState = {
-    result: {}
+    result: []
 }
 
 const resultSlice = createSlice({
@@ -15,8 +15,7 @@ const resultSlice = createSlice({
     initialState,
     reducers: {
         fetchResult: () => {},
-        setResult: (state, action: PayloadAction<IFXResponse>) => {
-            console.log(action.payload);
+        setResult: (state, action: PayloadAction<IForeignExchange[]>) => {
             state.result = action.payload;
         }
     }

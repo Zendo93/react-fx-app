@@ -1,10 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from '@reduxjs/toolkit';
 import resultReducer from "../reducers/resultReducer";
-import {combineEpics, createEpicMiddleware} from "redux-observable";
+import {combineEpics, createEpicMiddleware, Epic} from "redux-observable";
 import {resultEpic} from "../middleware/resultEpic";
 import searchReducer from "../reducers/searchReducer";
+import {searchEpic} from "../middleware/searchEpic";
 
 const rootEpic = combineEpics(
+    searchEpic as Epic,
     resultEpic
 );
 
@@ -21,7 +23,7 @@ function configureStore() {
       applyMiddleware(epicMiddleware)
   );
 
-  epicMiddleware.run(rootEpic);
+    epicMiddleware.run(rootEpic);
 
   return store;
 }

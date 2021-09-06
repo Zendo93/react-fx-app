@@ -9,7 +9,7 @@ export function resultEpic(action$: Observable<Action>): Observable<Action> {
     return action$.pipe(
         ofType('result/fetchResult'),
         mergeMap( _ => from(getFXResponse("https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343")).pipe(
-            map(fxResponse => setResult(fxResponse))
+            map(fxResponse => setResult(fxResponse.fx))
         ))
     );
 }
