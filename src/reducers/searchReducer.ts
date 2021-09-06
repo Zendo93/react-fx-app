@@ -4,7 +4,7 @@ import {RootState} from "../app/store";
 
 interface ISearchState {
     term: string;
-    result: Array<IForeignExchange>;
+    result: IForeignExchange[];
 }
 
 const initialState: ISearchState = {
@@ -18,10 +18,14 @@ const searchSlice = createSlice({
     reducers: {
         setSearchTerm: (state, action: PayloadAction<string>) => {
             state.term = action.payload;
+        },
+        setSearchResult: (state, action: PayloadAction<IForeignExchange[]>) => {
+            state.result = action.payload;
         }
     }
 });
 
-export const { setSearchTerm } = searchSlice.actions;
+export const { setSearchTerm, setSearchResult } = searchSlice.actions;
 export const selectSearchTerm = (state: RootState) => state.searchReducer.term;
+export const selectSearchResult = (state: RootState) => state.searchReducer.result;
 export default searchSlice.reducer;
