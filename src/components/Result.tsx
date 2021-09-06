@@ -3,25 +3,22 @@ import Item from "./Item";
 import {useAppDispatch, useAppSelector} from "../app/hooks";
 import {AppDispatch} from "../app/store";
 import {fetchResult, selectResult} from "../reducers/resultReducer";
-import {IFXResponse} from "../dto/FXResponse";
+import {IForeignExchange} from "../dto/FXResponse";
+import {selectSearchResult, selectSearchTerm} from "../reducers/searchReducer";
 
 function Result() {
-    const result: IFXResponse | {} = useAppSelector(selectResult);
+    const result: IForeignExchange[] = useAppSelector(selectResult);
+    const searchResult: IForeignExchange[] = useAppSelector(selectSearchResult);
+    const searchTerm: string = useAppSelector(selectSearchTerm);
     const dispatch: AppDispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchResult());
     }, [dispatch]);
 
-    function displayResult(result: IFXResponse): JSX.Element[] {
-        let items: JSX.Element[] = [];
-
-        if (Object.keys(result).length){
-          items = result.fx.filter(fx => fx.currency && fx.exchangeRate?.sell && fx.flags)
+    function displayResult(result: IForeignExchange[]): JSX.Element[] {
+        return result.filter(fx => fx.currency && fx.exchangeRate?.sell && fx.flags)
               .map(fx => <Item key={fx.currency} flag={getFlag(fx.currency)} name={fx.currency} currency={fx.exchangeRate.sell}/>);
-        }
-
-        return items;
     }
 
     function getFlag(currency: string): string {
@@ -30,7 +27,7 @@ function Result() {
 
     return (
         <>
-            {Object.keys(result).length && displayResult(result as IFXResponse)}
+            {displayResult(searchResult.length || !!searchTerm ? searchResult : result)}
         </>
     );
 }
