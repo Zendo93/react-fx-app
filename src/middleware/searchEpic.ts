@@ -13,7 +13,7 @@ export function searchEpic(action$: Observable<SearchAction>, state$: StateObser
         ofType<SearchAction, string, SearchAction>('search/setSearchTerm'),
         map((action: SearchAction) => {
             let result: IForeignExchange[] = state$.value.resultReducer.result;
-            return setSearchResult(result.filter(fx => fx.currency.startsWith(action.payload)));
+            return setSearchResult(result.filter(fx => fx.currency.toLowerCase().startsWith(action.payload.toLowerCase())));
         })
     );
 }
