@@ -5,6 +5,7 @@ import {AppDispatch} from "../app/store";
 import {fetchResult, selectResult} from "../reducers/resultReducer";
 import {IForeignExchange} from "../dto/FXResponse";
 import {selectSearchResult, selectSearchTerm} from "../reducers/searchReducer";
+import {getFlag} from "../utilities/flag";
 
 function Result() {
     const result: IForeignExchange[] = useAppSelector(selectResult);
@@ -19,10 +20,6 @@ function Result() {
     function displayResult(result: IForeignExchange[]): JSX.Element[] {
         return result.filter(fx => fx.currency && fx.exchangeRate?.sell && fx.flags)
               .map(fx => <Item key={fx.currency} flag={getFlag(fx.currency)} name={fx.currency} currency={fx.exchangeRate.sell}/>);
-    }
-
-    function getFlag(currency: string): string {
-        return `/flags/${currency.slice(0, currency.length - 1)}.png`
     }
 
     return (
