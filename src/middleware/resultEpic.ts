@@ -8,7 +8,7 @@ import {ofType} from "redux-observable";
 export function resultEpic(action$: Observable<Action>): Observable<Action> {
     return action$.pipe(
         ofType('result/fetchResult'),
-        mergeMap( _ => from(getFXResponse("https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343")).pipe(
+        mergeMap( _ => from(getFXResponse("../fx.json")).pipe(
             map(fxResponse => setResult(fxResponse.fx))
         ))
     );
