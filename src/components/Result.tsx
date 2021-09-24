@@ -4,18 +4,23 @@ import {useAppDispatch, useAppSelector} from "../app/hooks";
 import {AppDispatch} from "../app/store";
 import {fetchResult, selectResult} from "../reducers/resultReducer";
 import {IForeignExchange} from "../dto/FXResponse";
-import {selectSearchResult, selectSearchTerm} from "../reducers/searchReducer";
+import {selectSearchResult, selectSearchTerm, setSearchTerm} from "../reducers/searchReducer";
 import {getFlag} from "../utilities/flag";
+import {useParams} from "react-router-dom";
 
 function Result() {
     const result: IForeignExchange[] = useAppSelector(selectResult);
     const searchResult: IForeignExchange[] = useAppSelector(selectSearchResult);
     const searchTerm: string = useAppSelector(selectSearchTerm);
+    const { term } = useParams<{term: string}>();
     const dispatch: AppDispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchResult());
-    }, [dispatch]);
+        return () => {
+            if (term) dispatch(setSearchTerm(term));
+        }
+    }, [JSON.stringify(result), dispatch, term]);
 
     function displayResult(result: IForeignExchange[]): JSX.Element[] {
         return result.filter(fx => fx.currency && fx.exchangeRate?.sell && fx.flags)
