@@ -18,7 +18,7 @@ function Header() {
         <AppBar className={classes.appBar} position="static">
             <Toolbar className={classes.toolbar} variant="dense">
                 <Typography variant="h4" color="inherit">
-                    George FE Test
+                    React FX App
                 </Typography>
             </Toolbar>
         </AppBar>
